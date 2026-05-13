@@ -2,7 +2,7 @@
 title: Dimension theorem
 ---
 
-In an [[concepts/o-minimal-structures|o-minimal structure]], every nonempty definable set $X \subseteq \mathbb{R}^n$ has a well-defined **dimension** $\dim(X) \in \{0, 1, \dots, n\}$ satisfying:
+In an [[concepts/o-minimal-structures|o-minimal structure]], every nonempty [[concepts/definable-sets|definable set]] $X \subseteq \mathbb{R}^n$ has a well-defined **dimension** $\dim(X) \in \{0, 1, \dots, n\}$ satisfying:
 
 - $\dim(X \cup Y) = \max(\dim X, \dim Y)$.
 - $\dim(\overline{X} \setminus X) < \dim(X)$ (small frontier).

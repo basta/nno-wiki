@@ -2,7 +2,7 @@
 title: Cell decomposition
 ---
 
-**Theorem (cell decomposition).** Every definable subset of $\mathbb{R}^n$ admits a finite partition into [[concepts/cells|cells]]. Moreover, for any finite collection of definable functions, the partition can be chosen so each function is $C^r$ on each cell.
+**Theorem (cell decomposition).** Every [[concepts/definable-sets|definable subset]] of $\mathbb{R}^n$ admits a finite partition into [[concepts/cells|cells]]. Moreover, for any finite collection of [[concepts/definable-functions|definable functions]], the partition can be chosen so each function is $C^r$ on each cell.
 
 This is the structural backbone of [[concepts/tame-geometry|tame geometry]] — it makes [[concepts/dimension-theorem|dimension]] well-defined and supports [[concepts/stratifications|stratifications]].
 

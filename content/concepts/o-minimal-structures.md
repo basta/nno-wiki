@@ -2,7 +2,7 @@
 title: o-minimal structures
 ---
 
-An **o-minimal expansion** of the ordered field $(\mathbb{R}, <, +, \cdot)$ is a structure $\mathcal{R}$ such that every definable subset of $\mathbb{R}$ is a finite union of points and open intervals.
+An **o-minimal expansion** of the ordered field $(\mathbb{R}, <, +, \cdot)$ is a [[concepts/structures|structure]] $\mathcal{R}$ such that every [[concepts/definable-sets|definable subset]] of $\mathbb{R}$ is a finite union of points and open intervals.
 
 ## Standard examples
 

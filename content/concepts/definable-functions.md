@@ -2,7 +2,7 @@
 title: Definable functions
 ---
 
-A function $f: A \to \mathbb{R}^m$ is **definable** in $\mathcal{R}$ if its graph is a definable subset of $\mathbb{R}^{n+m}$.
+A function $f: A \to \mathbb{R}^m$ is **definable** in $\mathcal{R}$ if its graph is a [[concepts/definable-sets|definable subset]] of $\mathbb{R}^{n+m}$.
 
 In [[concepts/o-minimal-structures|o-minimal structures]], definable functions are extremely well-behaved: they are piecewise $C^r$, satisfy [[concepts/curve-selection|curve selection]], admit [[concepts/cell-decomposition|cell decompositions]] of their domain, and (for compositions) inherit definability.
 
@@ -15,5 +15,6 @@ In [[concepts/o-minimal-structures|o-minimal structures]], definable functions a
 
 ## See also
 
+- [[concepts/definable-sets]]
 - [[concepts/structures]]
 - [[concepts/tame-geometry]]

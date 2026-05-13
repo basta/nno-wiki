@@ -12,7 +12,7 @@ Rademacher is what makes the [[concepts/clarke-subdifferential|Clarke subdiffere
 $$\partial^\circ f(x) = \operatorname{conv}\Big\{ \lim_{k \to \infty} \nabla f(x_k) : x_k \to x,\ f\ \text{differentiable at } x_k \Big\}$$
 only makes sense because Rademacher guarantees a *dense* set of differentiability points near $x$.
 
-In the tame setting it gets sharpened: for [[concepts/definable-functions|definable]] locally Lipschitz functions, the non-differentiability set is not merely measure zero — it is a **definable set of dimension $< n$**, contained in a finite union of lower-dimensional [[concepts/cells|cells]]. This is why [[concepts/automated-differentiation|autodiff]] hits a non-smooth point with probability zero in generic settings.
+In the tame setting it gets sharpened: for [[concepts/definable-functions|definable]] locally Lipschitz functions, the non-differentiability set is not merely measure zero — it is a [[concepts/definable-sets|**definable set** of dimension $< n$]], contained in a finite union of lower-dimensional [[concepts/cells|cells]]. This is why [[concepts/automated-differentiation|autodiff]] hits a non-smooth point with probability zero in generic settings.
 
 ## Intuition
 

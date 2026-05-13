@@ -9,7 +9,7 @@ Stronger variants impose regularity along strata closures:
 - Verdier
 - Thom
 
-In [[concepts/o-minimal-structures|o-minimal structures]], every definable set admits a Whitney (and stronger) stratification.
+In [[concepts/o-minimal-structures|o-minimal structures]], every [[concepts/definable-sets|definable set]] admits a Whitney (and stronger) stratification.
 
 ## See also
 

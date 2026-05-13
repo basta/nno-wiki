@@ -9,9 +9,12 @@ Cross-cutting definitions and theorems for [[index|NNO]]. Pages are stubs to be 
 - [[concepts/tame-geometry|Tame geometry]]
 - [[concepts/structures|Structures (model theory)]]
 - [[concepts/o-minimal-structures|o-minimal structures]]
+- [[concepts/definable-sets|Definable sets]]
 - [[concepts/definable-functions|Definable functions]]
+- [[concepts/binary-relations|Binary relations, composition, transitive closure]]
 - [[concepts/algebraic-functions|Algebraic functions]]
 - [[concepts/semialgebraic|Semialgebraic sets and functions]]
+- [[concepts/real-analytic|Real-analytic functions]]
 
 ## Finiteness & geometry
 
