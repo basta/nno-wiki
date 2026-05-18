@@ -8,11 +8,11 @@ $$
 \mathcal{R} = (\mathcal{R}_n)_{n \in \mathbb{N}}, \qquad \mathcal{R}_n \subseteq \mathcal{P}(\mathbb{R}^n),
 $$
 
-specifying which subsets of each $\mathbb{R}^n$ are **definable**. The defining axioms (S1)–(S4) below pin down which collections deserve to be called structures; they are exactly what is needed for the class of definable sets to be closed under the natural set-theoretic and logical operations.
+specifying which subsets of each $\mathbb{R}^n$ are **definable**. The defining axioms (S1)–(S4) below pin down which collections deserve to be called structures; they are exactly what is needed for the class of definable sets to be closed under the natural set-theoretic and logical operations. Two further axioms (S5)–(S6) promote a structure to an [[concepts/o-minimal-structures|o-minimal expansion of the ordered real field]].
 
 For NNO, the structure of interest is an [[concepts/o-minimal-structures|o-minimal expansion]] of the ordered real field.
 
-## Axioms (S1)–(S4)
+## Axioms (S1)–(S4): structure
 
 Each $\mathcal{R}_n$ is required to satisfy:
 
@@ -22,6 +22,15 @@ Each $\mathcal{R}_n$ is required to satisfy:
 - **(S4) Diagonal.** The diagonal $\Delta = \{(x, x) : x \in \mathbb{R}\} \in \mathcal{R}_2$.
 
 These four axioms are *exactly* what makes the class of definable sets match the class of sets cut out by first-order formulas (see below).
+
+## Axioms (S5)–(S6): o-minimal expansion of the real field
+
+To go from a generic structure to the setting used in NNO, two further axioms are imposed (see [[concepts/o-minimal-structures]]):
+
+- **(S5) Contains the ordered real field.** $\{(x, y) \in \mathbb{R}^2 : x < y\} \in \mathcal{R}_2$, and the graphs of $+ : \mathbb{R}^2 \to \mathbb{R}$ and $\cdot : \mathbb{R}^2 \to \mathbb{R}$ are in $\mathcal{R}_3$. Equivalently: $\mathcal{R} \supseteq \mathcal{R}_{\mathrm{alg}}$.
+- **(S6) o-minimality.** Every $A \in \mathcal{R}_1$ is a finite union of points and open intervals.
+
+(S1)–(S4) alone are agnostic about which sets are definable — even $\mathcal{R}_\top$ satisfies them. (S5) pins down the ambient algebraic structure; (S6) is the *tameness* condition that propagates through (S3) to constrain every $\mathcal{R}_n$.
 
 A **definable function** $f : A \to \mathbb{R}^m$ is one whose graph is definable — see [[concepts/definable-functions]].
 
