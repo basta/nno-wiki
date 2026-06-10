@@ -9,6 +9,7 @@ Cross-cutting definitions and theorems for [[index|NNO]]. Pages are stubs to be 
 - [[concepts/tame-geometry|Tame geometry]]
 - [[concepts/structures|Structures (model theory)]]
 - [[concepts/o-minimal-structures|o-minimal structures]]
+- [[concepts/universe-of-structures|The universe of structures on ℝ]]
 - [[concepts/definable-sets|Definable sets]]
 - [[concepts/definable-functions|Definable functions]]
 - [[concepts/binary-relations|Binary relations, composition, transitive closure]]
@@ -32,6 +33,7 @@ Cross-cutting definitions and theorems for [[index|NNO]]. Pages are stubs to be 
 
 - [[concepts/subgradients|Subgradients & subdifferentials]]
 - [[concepts/clarke-subdifferential|Clarke subdifferential]]
+- [[concepts/clarke-regularity|Clarke regularity]]
 - [[concepts/rademacher-theorem|Rademacher's theorem]]
 - [[concepts/conservative-fields|Conservative fields]]
 - [[concepts/semismooth|Semismooth functions]]

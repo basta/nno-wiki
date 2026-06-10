@@ -32,7 +32,7 @@ For [[concepts/definable-functions|definable]] locally Lipschitz $f$, $\partial^
 - $\partial^\circ f(x)$ is a **nonempty, convex, compact** subset of $\mathbb{R}^n$.
 - If $f$ is **$C^1$ at $x$**, then $\partial^\circ f(x) = \{\nabla f(x)\}$.
 - If $f$ is **convex**, $\partial^\circ f(x)$ equals the convex-analytic subdifferential.
-- **Sum rule (inclusion)**: $\partial^\circ (f + g)(x) \subseteq \partial^\circ f(x) + \partial^\circ g(x)$, with equality if one summand is $C^1$ or both are *regular* at $x$.
+- **Sum rule (inclusion)**: $\partial^\circ (f + g)(x) \subseteq \partial^\circ f(x) + \partial^\circ g(x)$, with equality if one summand is $C^1$ or both are [[concepts/clarke-regularity|*regular*]] at $x$.
 - **Chain rule (inclusion)**: $\partial^\circ (f \circ g)(x) \subseteq \partial^\circ f(g(x)) \cdot \partial^\circ g(x)$ — generally not an equality, which is exactly what motivates [[concepts/conservative-fields|conservative fields]] for autodiff.
 
 ## Examples
@@ -173,7 +173,7 @@ This is the standard subdifferential underlying soft-thresholding / LASSO update
 *Red lines: the kink set where $\partial^\circ \|x\|_1$ is set-valued (any $x_i = 0$). At the red dot (origin), the subdifferential is the full hypercube $[-1, 1]^2$.*
 
 ### 6. A non-regular example: $f(x) = -|x|$
-Even though $|x|$ is convex and regular at $0$, its negative is **not** regular:
+Even though $|x|$ is convex and [[concepts/clarke-regularity|regular]] at $0$, its negative is **not** regular:
 $$\partial^\circ (-|x|)(0) = [-1, +1]$$
 but the limiting subdifferential is only $\{-1, +1\}$ (two points). The Clarke version is the **convex hull**, hiding the actual asymptotic behavior — illustrating why Clarke is "loose" without regularity.
 
@@ -232,8 +232,57 @@ applying the chain-rule **inclusion** gives
 $$\partial^\circ f(0) \subseteq w_2 \cdot [0, 1] \cdot w_1 \cdot [0, 1] = [0, w_1 w_2],$$
 and the actual Clarke set is the same interval $[0, w_1 w_2]$. Backprop picks **one specific element** of this interval depending on tie-breaking conventions.
 
+## Definability in an o-minimal structure (Exercise 0.4)
+
+**Claim.** If $f : \mathbb{R}^n \to \mathbb{R}$ is locally Lipschitz and [[concepts/definable-functions|definable]] in a [[concepts/structures|structure]] $\mathcal{R}$ satisfying (S1)–(S6), then the **graph of the set-valued map** $\partial^\circ f$,
+
+$$
+\Gamma := \big\{ (x,v) \in \mathbb{R}^n \times \mathbb{R}^n : v \in \partial^\circ f(x) \big\},
+$$
+
+is a [[concepts/definable-sets|definable subset]] of $\mathbb{R}^{2n}$.
+
+The strategy is to build $\Gamma$ in stages, each stage a definability-preserving operation. Throughout, (S5) is what lets us *write* the formulas at all — it supplies $<, +, \cdot$, hence norms $\|y-x\|$, inner products $\langle g, y-x\rangle$, and rational constants.
+
+**Step 0 — $f$ has a definable graph.** This is the hypothesis: $\operatorname{graph}(f) = \{(x,t) : t = f(x)\} \in \mathcal{R}_{n+1}$.
+
+**Step 1 — the differentiability locus and the gradient map are definable.** "$f$ is differentiable at $x$ with derivative $g$" is the first-order formula $\Phi(x,g)$:
+
+$$
+\forall \varepsilon\, \big(\varepsilon > 0 \to \exists \delta\,(\delta>0 \wedge \forall y\, (\|y-x\| < \delta \to |f(y)-f(x)-\langle g, y-x\rangle| \le \varepsilon\|y-x\|))\big).
+$$
+
+Every quantifier ranges over reals (vector quantifiers unpack into finitely many real ones via products (S2) and projections (S3)), the body is a Boolean combination (S1) of sign conditions on terms built from $f$ and (S5), and coordinate equality is (S4). Crucially $\Phi$ has **fixed finite quantifier depth** — this is what keeps it first-order. Hence $G := \{(x,g) : \Phi(x,g)\} \in \mathcal{R}_{2n}$; by uniqueness of the derivative $G$ is exactly the graph of $\nabla f$ over the differentiability locus $D_f$, and projecting out $g$ via (S3) gives $D_f = \pi(G) \in \mathcal{R}_n$.
+
+**Step 2 — the limiting subdifferential is a definable closure.** Unwinding the limit, $v \in \partial_B f(x)$ iff some sequence $(x_k, \nabla f(x_k)) \in G$ converges to $(x,v)$ — i.e. iff $(x,v)$ lies in the topological **closure** $\overline{G}$. Closure is definability-preserving:
+
+$$
+(x,v)\in\overline G \iff \forall \varepsilon\,\big(\varepsilon>0 \to \exists (x',g')\,((x',g')\in G \wedge \|(x',g')-(x,v)\| < \varepsilon)\big),
+$$
+
+again finite-depth, so $\overline{G} \in \mathcal{R}_{2n}$. Then $\partial_B f(x)$ is the fiber $\{v : (x,v)\in\overline G\}$.
+
+**Step 3 — convex hull, fiberwise, via Carathéodory.** This is the one step that could go wrong: $\operatorname{conv}$ is *a priori* an infinite union of convex combinations. **Carathéodory's theorem** rescues it — in $\mathbb{R}^n$ every point of $\operatorname{conv}(S)$ is a combination of at most $n+1$ points of $S$ — so
+
+$$
+\Gamma = \Big\{ (x,v) : \exists v_0,\dots,v_n\ \exists \lambda_0,\dots,\lambda_n\ \Big(\textstyle\bigwedge_i (x,v_i)\in\overline G \,\wedge\, \lambda_i\ge 0 \,\wedge\, \sum_i \lambda_i = 1 \,\wedge\, v=\sum_i \lambda_i v_i\Big)\Big\}.
+$$
+
+Only **finitely many** existential quantifiers ($n+1$ of each) — a single projection (S3) of a Boolean combination (S1) of definable sets. Hence $\Gamma \in \mathcal{R}_{2n}$. $\qquad\blacksquare$
+
+### Where each axiom is used — and an honest caveat
+
+- **(S5)** is load-bearing everywhere: no ordered field, no way to write $\varepsilon$–$\delta$, norms, or convex combinations.
+- **(S1)–(S4)** turn each English construction into a definable set: Boolean closure (formula bodies), products (vector variables), **projection = the existential quantifier** (differentiability witness, closure, Carathéodory hull), diagonal (equalities).
+- **Carathéodory** is the non-axiom hero — it bounds the quantifier depth in Step 3 and keeps $\operatorname{conv}$ first-order.
+
+The honest subtlety: the *definability* of $\Gamma$ used only (S1)–(S5) plus Carathéodory — **o-minimality (S6) was not invoked in the closure argument.** What (S6) buys is **tameness and well-posedness**, not definability per se. A definable $f$ in an o-minimal structure is piecewise $C^1$ (see [[concepts/definable-functions]]), so $D_f$ has complement not merely of measure zero but of [[concepts/dimension-theorem|dimension $< n$]] — the sharpened [[concepts/rademacher-theorem|Rademacher]] statement. That is what makes $\partial_B f$ genuinely "one limit per adjacent smooth stratum" rather than a measure-theoretic artifact, and what supplies the finiteness/dimension control behind the projection formulas onto a [[concepts/whitney-stratifications|Whitney stratification]].
+
+In one line: **definability rides on (S1)–(S5) + Carathéodory; o-minimality (S6) is what makes the resulting object tame.**
+
 ## See also
 
 - [[concepts/rademacher-theorem]]
+- [[concepts/clarke-regularity]]
 - [[concepts/subgradients]]
 - [[concepts/conservative-fields]]
