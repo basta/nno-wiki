@@ -16,6 +16,7 @@ Cross-cutting definitions and theorems for [[index|NNO]]. Pages are stubs to be 
 - [[concepts/algebraic-functions|Algebraic functions]]
 - [[concepts/semialgebraic|Semialgebraic sets and functions]]
 - [[concepts/real-analytic|Real-analytic functions]]
+- [[concepts/pfaffian-functions|Pfaffian functions]]
 
 ## Finiteness & geometry
 
