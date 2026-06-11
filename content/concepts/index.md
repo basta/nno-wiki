@@ -26,12 +26,15 @@ Cross-cutting definitions and theorems for [[index|NNO]]. Pages are stubs to be 
 - [[concepts/curve-selection|Curve selection]]
 - [[concepts/cells|Cells]]
 - [[concepts/cell-decomposition|Cell decomposition]]
+- [[concepts/c1-manifolds|C¹-manifolds & definable homeomorphisms]]
+- [[concepts/c1-smoothness|Fréchet-differentiability & C¹-smoothness]]
 - [[concepts/stratifications|Stratifications]]
 - [[concepts/whitney-stratifications|Whitney stratifications]]
 - [[concepts/kl-inequality|Kurdyka–Łojasiewicz inequality]]
 
 ## Variational analysis
 
+- [[concepts/set-convergence|Set convergence (outer/inner/Painlevé–Kuratowski limits)]]
 - [[concepts/subgradients|Subgradients & subdifferentials]]
 - [[concepts/clarke-subdifferential|Clarke subdifferential]]
 - [[concepts/clarke-regularity|Clarke regularity]]
