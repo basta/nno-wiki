@@ -254,7 +254,7 @@ $$
 
 Every quantifier ranges over reals (vector quantifiers unpack into finitely many real ones via products (S2) and projections (S3)), the body is a Boolean combination (S1) of sign conditions on terms built from $f$ and (S5), and coordinate equality is (S4). Crucially $\Phi$ has **fixed finite quantifier depth** — this is what keeps it first-order. Hence $G := \{(x,g) : \Phi(x,g)\} \in \mathcal{R}_{2n}$; by uniqueness of the derivative $G$ is exactly the graph of $\nabla f$ over the differentiability locus $D_f$, and projecting out $g$ via (S3) gives $D_f = \pi(G) \in \mathcal{R}_n$.
 
-**Step 2 — the limiting subdifferential is a definable closure.** Unwinding the limit, $v \in \partial_B f(x)$ iff some sequence $(x_k, \nabla f(x_k)) \in G$ converges to $(x,v)$ — i.e. iff $(x,v)$ lies in the topological **closure** $\overline{G}$. Closure is definability-preserving:
+**Step 2 — the Bouligand (gradient-limit) subdifferential is a definable closure.** Unwinding the limit, $v \in \partial_B f(x)$ iff some sequence $(x_k, \nabla f(x_k)) \in G$ converges to $(x,v)$ — i.e. iff $(x,v)$ lies in the topological **closure** $\overline{G}$. Closure is definability-preserving:
 
 $$
 (x,v)\in\overline G \iff \forall \varepsilon\,\big(\varepsilon>0 \to \exists (x',g')\,((x',g')\in G \wedge \|(x',g')-(x,v)\| < \varepsilon)\big),

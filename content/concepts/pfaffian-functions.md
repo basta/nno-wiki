@@ -16,6 +16,53 @@ for all $i \le r$, $j \le n$, where each $P_{ij}$ is a polynomial. The right-han
 
 A **Pfaffian function** is any polynomial $Q\big(x, f_1(x), \dots, f_r(x)\big)$ in the coordinates and the chain. The pair $(r, \text{degrees})$ is the *complexity* of the chain; Khovanskii's theory bounds geometric quantities (number of zeros, connected components) purely in terms of it.
 
+## A worked example: GELU
+
+It helps to separate the two nested objects in the definition. The **chain** $f_1, \dots, f_r$ is scaffolding — helper functions whose derivatives are polynomial in $x$ and *earlier* chain members. The **Pfaffian function** is the thing you actually want, built as a single polynomial $Q$ on top of that scaffolding. Let us grow GELU.
+
+GELU is $\mathrm{GELU}(x) = x\,\Phi(x)$, where $\Phi$ is the Gaussian CDF and $\Phi(x) = \tfrac12\big(1 + \mathrm{erf}(x/\sqrt2)\big)$. Take $n = 1$, so each $\partial/\partial x_j$ is just $\tfrac{d}{dx}$, and build a chain of length $r = 2$:
+
+$$
+f_1(x) = e^{-x^2/2}, \qquad f_2(x) = \mathrm{erf}(x/\sqrt2).
+$$
+
+Check each member against the rule $\dfrac{\partial f_i}{\partial x_j} = P_{ij}(x, f_1, \dots, f_i)$.
+
+For $f_1$ (the $i = 1$ row, so $P$ may reference only $f_1$):
+
+$$
+f_1'(x) = -x\,e^{-x^2/2} = \underbrace{-x \cdot f_1}_{P_{11}(x,\, f_1)}.
+$$
+
+The derivative of $e^{-x^2/2}$ is no simpler than itself — but it **is** a polynomial in $x$ and $f_1$, and that is all the definition demands. We never need a chain member's derivative to be elementary, only polynomial in data we already hold.
+
+For $f_2$ (the $i = 2$ row, so $P$ may reference $f_1$ and $f_2$):
+
+$$
+f_2'(x) = \tfrac{d}{dx}\,\mathrm{erf}(x/\sqrt2) = \sqrt{\tfrac{2}{\pi}}\;e^{-x^2/2} = \underbrace{\sqrt{\tfrac{2}{\pi}} \cdot f_1}_{P_{21}(x,\, f_1,\, f_2)}.
+$$
+
+This is **triangularity** at work: $f_2'$ reaches *back* to $f_1$, which is allowed because $f_1$ was introduced first. What it may not do is reference a later member. The ordering is essential — note $f_1'$ leans on $f_1$ alone, never on $f_2$ — and if the dependencies pointed forward no valid ordering would exist.
+
+Finally, GELU itself is a Pfaffian *function*: a plain polynomial $Q$ in $x$ and the chain, with no derivatives or integrals left:
+
+$$
+\mathrm{GELU}(x) = x\,\Phi(x) = \tfrac{x}{2}\big(1 + f_2\big) = \underbrace{\tfrac{x}{2} + \tfrac{x}{2}\,f_2}_{Q(x,\, f_1,\, f_2)}.
+$$
+
+(It uses only $f_2$ directly; $f_1$ existed solely to *grow* $f_2$.) Mapping the definition's symbols to this instance:
+
+| Definition symbol | In this example |
+|---|---|
+| $n$ (variables) | $1$ |
+| $r$ (chain length) | $2$ |
+| $f_1, \dots, f_r$ | $e^{-x^2/2},\ \mathrm{erf}(x/\sqrt2)$ |
+| $P_{11}(x, f_1)$ | $-x\,f_1$ |
+| $P_{21}(x, f_1, f_2)$ | $\sqrt{2/\pi}\,f_1$ |
+| $Q(x, f_1, f_2)$ | $\tfrac{x}{2} + \tfrac{x}{2}\,f_2 = \mathrm{GELU}$ |
+
+The Gaussian is rescaled to $e^{-x^2/2}$ (versus the bare $e^{-x^2}$ used below) precisely so that GELU drops out as a clean polynomial in the chain. The one-sentence intuition: a function is Pfaffian when you can reach it by a **finite ladder of antiderivatives**, each rung's derivative being polynomial in $x$ and the rungs beneath it.
+
 ## Why this is the right notion for tameness
 
 The defining feature is **closure under antidifferentiation**: if $g$ is already in your chain and $f' = P(x, g, f)$ for a polynomial $P$, then $f$ extends the chain. So "solve a first-order ODE whose data you already have" keeps you inside the Pfaffian world.

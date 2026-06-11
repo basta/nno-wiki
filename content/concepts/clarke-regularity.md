@@ -28,24 +28,45 @@ Regularity is exactly the case where the looser generalized derivative gains not
 
 ## Equivalent subdifferential statement
 
-The [[concepts/clarke-subdifferential|Clarke subdifferential]] is always the convex hull of the limiting (Bouligand) subdifferential, $\partial^\circ f(x) = \operatorname{conv}\,\partial_B f(x)$. Then
+Three subdifferentials are nested at every point of a locally Lipschitz $f$:
 
 $$
-f \text{ regular at } x \iff \partial_B f(x) \text{ is already convex, i.e. } \partial_B f(x) = \partial^\circ f(x),
+\underbrace{\partial_B f(x)}_{\text{gradient limits}} \;\subseteq\; \underbrace{\partial_L f(x)}_{\text{limiting (Mordukhovich)}} \;\subseteq\; \underbrace{\partial^\circ f(x)}_{\text{Clarke}} \;=\; \operatorname{conv}\,\partial_B f(x).
 $$
 
-and moreover $f^{\circ}(x;d) = \max_{v \in \partial^\circ f(x)} \langle v, d\rangle$ is the genuine directional derivative in every direction. Regularity means **the convex hull threw nothing away** — no asymptotic gradient information was lost in passing from $\partial_B$ to $\partial^\circ$.
+- $\partial_B f(x)$ — the **Bouligand** (gradient-limit) subdifferential: limits $\lim_k \nabla f(x_k)$ over differentiability points $x_k \to x$. This is the set *inside* the $\operatorname{conv}\{\dots\}$ of the [[concepts/clarke-subdifferential|Clarke definition]].
+- $\partial_L f(x)$ — the **limiting (Mordukhovich)** subdifferential: limits of *regular (Fréchet) subgradients* at nearby points. Unlike $\partial_B$, it can also pick up subgradients **at the kink itself** (supporting slopes), so it is generally strictly larger than $\partial_B$.
+- $\partial^\circ f(x)$ — the **Clarke** subdifferential, the convex hull of either.
 
-## The canonical non-regular example: $-|x|$
+Regularity is a statement about the **middle** object:
 
-This is example 6 on the [[concepts/clarke-subdifferential|Clarke subdifferential]] page. At $x = 0$:
+$$
+f \text{ regular at } x \iff \partial_L f(x) = \partial^\circ f(x) \iff \partial_L f(x) \text{ is already convex},
+$$
 
-- $\partial_B(-|x|)(0) = \{-1, +1\}$ — two isolated points;
-- $\partial^\circ(-|x|)(0) = \operatorname{conv}\{-1,+1\} = [-1, +1]$.
+with $f^{\circ}(x;d) = \max_{v \in \partial^\circ f(x)} \langle v, d\rangle$ then the genuine directional derivative in every direction. Regularity means **the convex hull threw nothing away** in passing from $\partial_L$ to $\partial^\circ$.
 
-These differ, so $-|x|$ is **not** regular at $0$. Concretely $f'(0; 1) = -1$ (the true downhill slope to the right), but $f^{\circ}(0;1) = +1$ (the $\limsup$ finds nearby base-points where moving right *increases* $f$). The two disagree, and $\partial^\circ$ reports the whole interval $[-1,+1]$ — "loose."
+> **Caution.** It is *not* the gradient-limit set $\partial_B$ whose convexity decides regularity. As the contrast below shows, $\partial_B$ is *identical* for $|x|$ and $-|x|$, yet only $|x|$ is regular — the discriminating information lives in $\partial_L$, not $\partial_B$.
 
-By contrast $+|x|$ **is** regular at $0$: it is convex, $\partial_B = \partial^\circ = [-1,+1]$, and $f^\circ(0;d) = |d| = f'(0;d)$.
+## Why $|x|$ is regular but $-|x|$ is not
+
+Both functions have the **same** Bouligand set at $0$: approaching through differentiability points collects the two side-gradients $\pm 1$, so
+
+$$
+\partial_B(|x|)(0) = \partial_B(-|x|)(0) = \{-1, +1\}.
+$$
+
+Gradient limits alone cannot tell them apart. What differs is the limiting subdifferential $\partial_L$, and the difference is geometric: does the kink admit a **supporting slope** — a line through the kink lying *below* the graph?
+
+- **$|x|$ (a "V", convex).** Every line $y = vx$ with $|v| \le 1$ stays below the V and touches at $0$. These are regular subgradients *at the kink*, so $\partial_L(|x|)(0) = [-1, +1]$ — the whole interval. The interval is **not** built from gradient limits; it comes entirely from supporting slopes. Since $\partial_L = \partial^\circ$, $|x|$ is **regular**.
+- **$-|x|$ (a "∧", concave kink).** No line through $0$ stays below the ∧: the graph drops on *both* sides, so a supporting line would need slope $\ge 1$ and $\le -1$ at once — impossible. The kink contributes nothing, and $\partial_L(-|x|)(0) = \{-1, +1\}$ is just the two side-limits. This is not convex, $\partial_L \ne \partial^\circ = [-1,+1]$, so $-|x|$ is **not regular**.
+
+The directional-derivative test agrees: for $-|x|$, $f'(0;1) = -1$ (the true downhill slope to the right) but $f^{\circ}(0;1) = +1$ (the $\limsup$ finds nearby base-points where moving right *increases* $f$); for $|x|$, $f'(0;d) = f^{\circ}(0;d) = |d|$ in every direction. This is example 6 on the [[concepts/clarke-subdifferential|Clarke subdifferential]] page.
+
+| | $\partial_B$ (gradient limits) | supporting slopes at kink | $\partial_L$ (limiting) | regular? |
+|---|---|---|---|---|
+| $\lvert x\rvert$ | $\{-1,+1\}$ | all of $[-1,+1]$ | $[-1,+1]$ | yes |
+| $-\lvert x\rvert$ | $\{-1,+1\}$ | none | $\{-1,+1\}$ | no |
 
 ## What is regular
 
